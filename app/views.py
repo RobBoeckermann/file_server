@@ -3,7 +3,9 @@ from .forms import ImageUploadForm
 from .models import CustomerImage
 from django.contrib import messages
 
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def upload_file(request):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
@@ -20,6 +22,6 @@ def upload_file(request):
 
     return render(request, 'upload.html', {'form': form})
 
-
+@csrf_exempt
 def upload_success(request):
     return render(request, 'upload_success.html')

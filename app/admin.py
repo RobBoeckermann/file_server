@@ -3,6 +3,9 @@ from .models import CustomerImage
 from django.utils.safestring import mark_safe
 from django.http import HttpResponse
 
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
 class CustomerImageAdmin(admin.ModelAdmin):
     list_display = ('customer_name', 'date_uploaded', 'display_image', 'download_image')
     ordering = ('-date_uploaded',)
